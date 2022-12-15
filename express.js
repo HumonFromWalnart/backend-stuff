@@ -1,12 +1,13 @@
+import express from 'express';
+import bodyParser from 'body-parser'
 
-
-import express, { response } from 'express';
 const port = 6942;
 const app = express();
+const jsonParser = bodyParser.json()
 
-const users = [
-    { id: 1, name: 'Jonh' },
-    { id: 2, name: 'Male' },
+let users = [
+    { id: 1, name: 'Medic' },
+    { id: 2, name: 'Scout' },
 ];
 
 app.get("/", (req, res, next) => {
@@ -14,64 +15,63 @@ app.get("/", (req, res, next) => {
         users: users,
     });
 });
+3
+app.post("/post", jsonParser, (req, res, next) => {
 
-app.get("/create", (req, res, next) => {
+    console.log(req.body)
     users.push({ id: users.length + 1, ...req.body });
     res.status('400').json({ message: 'new user created' });
 });
 
-app.post("/:id", (req, res, next) => {
+app.get("/:id", (req, res, next) => {
     const { id } = req.params;
-    console.log(id)
     if (id > users.length) {
         res
             .status('400')
-            .json({ message: `${req.params.id} id does not exist you dumb ass. ___       ________  ___          
-            |\  \     |\   __  \|\  \         
-            \ \  \    \ \  \|\  \ \  \        
-             \ \  \    \ \  \\\  \ \  \       
-              \ \  \____\ \  \\\  \ \  \____  
-               \ \_______\ \_______\ \_______\
-                \|_______|\|_______|\|_______|`})
+            .json({ message: `${req.params.id} id does not exist you dumb ass.` })
     } else {
         res.status('200').json(users[parseInt(id) - 1]);
     }
 });
 
-app.patch("/:id", (req, res, next) => {
+app.patch("/:id", jsonParser, (req, res, next) => {
     const { id } = req.params;
     if (id > users.length) {
         res
             .status('400')
-            .json({ message: `${req.params.id} id does not exist you dumb ass ___       ________  ___          
-            |\  \     |\   __  \|\  \         
-            \ \  \    \ \  \|\  \ \  \        
-             \ \  \    \ \  \\\  \ \  \       
-              \ \  \____\ \  \\\  \ \  \____  
-               \ \_______\ \_______\ \_______\
-                \|_______|\|_______|\|_______|` })
+            .json({ message: `${req.params.id} id does not exist you dumb ass` })
     } else {
         res.status('200').json({ message: `user with ${req.params.id} id is updated. Are you satisfied now?` })
     }
 });
 
-app.delete("/:id", (req, res, next) => {
+app.delete("/:id", jsonParser, (req, res, next) => {
     const { id } = req.params;
-    if (id > users.length) {
-        res
-            .status('400')
-            .json({ message: `${req.params.id} id does not exist you dumb ass ___       ________  ___          
-            |\  \     |\   __  \|\  \         
-            \ \  \    \ \  \|\  \ \  \        
-             \ \  \    \ \  \\\  \ \  \       
-              \ \  \____\ \  \\\  \ \  \____  
-               \ \_______\ \_______\ \_______\
-                \|_______|\|_______|\|_______|` })
-    } else {
-        res.status('200').json({ message: `user with ${req.params.id} id got killed ` })
+    // 1 string
+    // if (id > users.length) {
+    //     res
+    //         .status('400')
+    //         .json({ message: `${req.params.id} id does not exist you dumb ass ` })
+
+    // } else {
+    const user = users.filter(cur => cur.id === parseInt(id))
+
+    if (user.length === 0) {
+        res.status(400).json({ message: 'not found' })
     }
+    else {
+        // res.status(200).json({ message: 'found' })
+        const filtered = users.filter(cur => cur.id !== parseInt(id));
+
+        users = filtered;
+
+       console.log(filtered)
+       
+        res.status(200).json({ message: `user with ${req.params.id} id got killed ` })
+    }
+    // }
 })
 
 app.listen(port, () => {
-    console.log(`${'Another successfull seizure!', port}`);
+    console.log(`<${port}> Another successfull seizure!`);
 });
