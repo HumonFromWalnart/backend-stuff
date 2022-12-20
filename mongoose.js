@@ -1,13 +1,12 @@
-const {model, Schema} = require('mongoose');
+import { model, Schema } from 'mongoose';
 
 const UserSchema = new Schema({
-    firstName : String,
-    lastName : String,
-    email : String,
-    birth : Date,
-    registerDate : {type : Date, default : Date.now},
+    firstName: String,
+    lastName: String,
+    email: String,
+    registerDate: { type: Date, default: Date.now },
 });
 
 const Usermodel = model("User", UserSchema);
 
-model.exports = Usermodel;
+export default Usermodel;

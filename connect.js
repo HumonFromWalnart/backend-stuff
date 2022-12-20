@@ -1,16 +1,14 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const uri = "mongodb+srv://chara:Lmong@cluster0.gkyndj3.mongodb.net/?retryWrites=true&w=majority";
 
-const Connect = async () => {
+const connect = async () => {
     try {
-        await mongoose.Connect(uri);
+        await mongoose.connect(uri);
         console.log('LEsgooooooo WOOOOOOOO')
     } catch (error) {
         console.log('NOOOOOOOo')
     }
 }
 
-module.exports = Connect;
-
-
+export default connect;
