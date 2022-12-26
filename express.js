@@ -6,15 +6,15 @@ const app = express();
 const jsonParser = bodyParser.json()
 
 let users = [
-    { id: 1, name: 'Medic', line: `Your existance is an insult for all of us!` },
-    { id: 2, name: 'Scout', line: `You can't run away from the fact that your dead!` },
-    { id: 3, name: 'Spy', line: `Isn't it your job to get rid of me?` },
-    { id: 4, name: 'Pyro', line: `mmmmph` },
-    { id: 5, name: 'Soldier', line: `Your a fool, thinking that someone with your pathetic IQ could defeat me!` },
-    { id: 6, name: 'Heavy', line: `You can't run away from the fact that your dead!` },
-    { id: 7, name: 'Sniper', line: 'Wanker, wanker, wanker, wanker. (laugh)' },
-    { id: 8, name: 'Demoman', line: `Its a drunk, half-blind idiot with exposives! (laugh)` },
-    { id: 9, name: 'Engineer', line: `I'm wolverine mean, you son of a bitch` }
+    { id: 1, name: "Medic", line: "Your existance is an insult for all of us!" },
+    { id: 2, name: "Scout", line: "You can't run away from the fact that your dead!" },
+    { id: 3, name: "Spy", line: "Isn't it your job to get rid of me?" },
+    { id: 4, name: "Pyro", line: "mmmmph" },
+    { id: 5, name: "Soldier", line: "Your a fool, thinking that someone with your pathetic IQ could defeat me!" },
+    { id: 6, name: "Heavy", line: "You can't run away from the fact that your dead!" },
+    { id: 7, name: "Sniper", line: "Wanker, wanker, wanker, wanker. (laugh)" },
+    { id: 8, name: "Demoman", line: "Its a drunk, half-blind idiot with exposives! (laugh)" },
+    { id: 9, name: "Engineer", line: "I'm wolverine mean, you son of a bitch" }
 ];
 
 app.get("/", (req, res, next) => {

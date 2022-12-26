@@ -2,13 +2,15 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import connect from './connect.js';
 import router from './router.js';
+import cors from 'cors';
 
-const port = 642;
+const port = 6942;
 const app = express();
 const jsonParser = bodyParser.json()
 connect();
+app.use(cors());
 app.use(jsonParser)
-app.use(router)
+app.use(router),
 app.listen(port, () => {
     console.log(`<${port}> Another successfull seizure!`);
 });

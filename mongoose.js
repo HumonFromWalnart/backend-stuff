@@ -4,8 +4,10 @@ const UserSchema = new Schema({
     firstName: String,
     lastName: String,
     email: String,
-    registerDate: { type: Date, default: Date.now },
-});
+    picture : String,
+    line : String
+    // registerDate: { type: Date, default: Date.now },
+}, {versionKey : false});
 
 const Usermodel = model("User", UserSchema);
 
