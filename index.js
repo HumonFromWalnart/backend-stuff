@@ -11,6 +11,6 @@ connect();
 app.use(cors());
 app.use(jsonParser)
 app.use(router),
-app.listen(port, () => {
-    console.log(`<${port}> Another successfull seizure!`);
-});
+    app.listen(port, () => {
+        console.log(`<${port}> Another successfull seizure!`);
+    });
